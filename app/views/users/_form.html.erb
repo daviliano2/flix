@@ -1,0 +1,36 @@
+<%= form_for(@user) do |u| %>
+  <%= render "shared/errors", object: @user %>
+  <fieldset>
+    <ol>
+      <li class="required">
+        <%= u.label :name %>
+        <%= u.text_field :name, size: 40, autofocus: true %>
+      </li>
+      <li class="required">
+        <%= u.label :username %>
+        <%= u.text_field :username, size: 40,
+                          placeholder: "Alphanumeric characters only!" %>
+      </li>
+      <li class="required">
+        <%= u.label :email %>
+        <%= u.email_field :email, size: 40 %>
+      </li>
+      <li class="required">
+        <%= u.label :password %>
+        <%= u.password_field :password, size: 40 %>
+      </li>
+      <li class="required">
+        <%= u.label :password_confirmation, "Confirm Password" %>
+        <%= u.password_field :password_confirmation, size: 40 %>
+      </li>
+    </ol>
+    <p>
+      <% if @user.new_record? %>
+        <%= u.submit "Create Account" %>
+       <% else %>
+        <%= u.submit "Update Account" %>
+      <% end %>
+      <%= link_to "Cancel", movies_path, class: 'button' %>
+    </p>
+  </fieldset>
+<% end %>
